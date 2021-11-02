@@ -1,0 +1,29 @@
+SELECT * FROM city WHERE CountryCode='USA';
+
+SELECT Name, Population, LifeExpectancy FROM country WHERE name='argentina';
+
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy=(SELECT MAX(LifeExpectancy) FROM COUNTRY);
+
+SELECT Name, LifeExpectancy FROM country WHERE lifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 1;
+
+SELECT c1.Name, Capital, c2.name FROM country c1 JOIN city c2 ON c2.ID=c1.capital WHERE c1.name='spain';
+
+SELECT Language, CountryCode, Region, c1.Name, Code FROM country c1 join CountryLanguage c2 
+ON c1.Code=c2.CountryCode WHERE region='Southeast Asia';
+
+SELECT * FROM city WHERE name LIKE'F%'; 
+
+SELECT COUNT(c1.name) FROM city c1 JOIN country c2 on c1.CountryCode=c2.Code WHERE CountryCode='CHN';
+
+SELECT * FROM country WHERE population=(SELECT MIN(Population) FROM Country) 
+AND Population IS NOT NULL ORDER BY POPULATION LIMIT 1; 
+
+SELECT * FROM country ORDER BY SurfaceArea DESC LIMIT 10;
+
+SELECT * FROM city WHERE CountryCode='JPN' ORDER BY Population DESC LIMIT 5;
+
+UPDATE country SET HeadOfState='Elizabeth II' WHERE HeadOfState='Elisabeth II';
+SELECT Name, Code FROM country WHERE HeadOfState='Elizabeth II';
+
+SELECT Name, SurfaceArea/Population FROM country WHERE SurfaceArea/Population
+ IS NOT NULL ORDER BY SurfaceArea/Population LIMIT 10;
